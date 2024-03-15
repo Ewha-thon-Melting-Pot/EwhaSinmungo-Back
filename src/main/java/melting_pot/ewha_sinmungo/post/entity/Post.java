@@ -26,13 +26,13 @@ public class Post {
     @Column(nullable = false)
     private Category category;
 
-    @Enumerated(value = EnumType.STRING)
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int voteCount;
 
     @Column(nullable = false)
     private LocalDateTime deadline;
 
+    @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private Status status;
 
