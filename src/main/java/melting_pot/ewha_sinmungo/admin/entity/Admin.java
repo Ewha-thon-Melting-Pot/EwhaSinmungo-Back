@@ -1,7 +1,8 @@
 package melting_pot.ewha_sinmungo.admin.entity;
 
-import jakarta.persistence.*;
+
 import lombok.NoArgsConstructor;
+import javax.persistence.*;
 
 @Entity
 @NoArgsConstructor
