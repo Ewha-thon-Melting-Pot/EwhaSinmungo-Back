@@ -40,7 +40,7 @@ public class MemberController {
         return memberService.getCurrentMember();
     }
 
-    @GetMapping("/test")
+    @GetMapping("/test2")
     public String test2(){
         return "테스트 확인";
     }
