@@ -4,10 +4,8 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import melting_pot.ewha_sinmungo.global.jwt.JwtToken;
 import melting_pot.ewha_sinmungo.global.jwt.JwtTokenProvider;
-import melting_pot.ewha_sinmungo.member.dto.MemberDto;
-import melting_pot.ewha_sinmungo.member.dto.SignUpDto;
 import melting_pot.ewha_sinmungo.member.dto.SignupRequestDto;
-import melting_pot.ewha_sinmungo.member.entity.Role;
+import melting_pot.ewha_sinmungo.member.entity.Member;
 import melting_pot.ewha_sinmungo.member.repository.MemberRepository;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -46,16 +44,25 @@ public class MemberService{
     }
 
     @Transactional
-    public MemberDto signUp(SignUpDto signUpDto){
-        if(memberRepository.existsByStudentNum(signUpDto.getStudentNum())){
+    public Member signUp(SignupRequestDto requestDto){
+        if(memberRepository.existsByStudentNum(requestDto.getStudentNum())){
             throw new IllegalArgumentException("이미 사용중인 학번입니다.");
         }
 
-        String encodedPassword = passwordEncoder.encode(signUpDto.getPassword());
-        Boolean isStudent = false;
+        String encodedPassword = passwordEncoder.encode(requestDto.getPassword());
         List<String> roles = new ArrayList<>();
-        roles.add("GUEST");
-        return MemberDto.toDto(memberRepository.save(signUpDto.toEntity(encodedPassword, isStudent, roles)));
+        roles.add("STUDENT");
+
+        Member member = Member.builder()
+                .name(requestDto.getName())
+                .studentNum(requestDto.getStudentNum())
+                .college(requestDto.getCollege())
+                .password(encodedPassword)
+                .roles(roles)
+                .build();
+        memberRepository.save(member);
+
+        return member;
     }
 
 }

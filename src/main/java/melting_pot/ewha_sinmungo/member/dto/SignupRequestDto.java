@@ -2,10 +2,6 @@ package melting_pot.ewha_sinmungo.member.dto;
 
 
 import lombok.*;
-import melting_pot.ewha_sinmungo.member.entity.Member;
-
-import java.util.ArrayList;
-import java.util.List;
 
 @Getter
 @Setter
