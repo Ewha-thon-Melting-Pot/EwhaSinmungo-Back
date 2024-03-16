@@ -11,9 +11,6 @@
 .idea/**/usage.statistics.xml
 .idea/**/dictionaries
 .idea/**/shelf
-/bin
-/.idea
-/gradle
 
 # AWS User-specific
 .idea/**/aws.xml
