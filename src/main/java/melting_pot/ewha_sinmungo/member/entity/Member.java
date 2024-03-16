@@ -35,6 +35,9 @@ public class Member implements UserDetails {
     @Column(nullable = false)
     private boolean is_student;
 
+    @Column(nullable = false)
+    private String college;
+
     @Column(name = "ROLE")
     @Enumerated(EnumType.STRING)
     private Role role;
@@ -43,14 +46,6 @@ public class Member implements UserDetails {
     @Builder.Default
     private List<String> roles = new ArrayList<>();
 
-
-//    @Builder
-//    public Member(String name, String studentNum, String password, boolean is_student){
-//        this.name = name;
-//        this.studentNum = studentNum;
-//        this.password = password;
-//        this.is_student = is_student;
-//    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

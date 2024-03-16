@@ -2,7 +2,6 @@ package melting_pot.ewha_sinmungo.result.entity;
 
 import javax.persistence.*;
 import lombok.NoArgsConstructor;
-import melting_pot.ewha_sinmungo.admin.entity.Admin;
 import melting_pot.ewha_sinmungo.member.entity.Member;
 import melting_pot.ewha_sinmungo.post.entity.Post;
 
@@ -19,8 +18,8 @@ public class Result {
     private String content;
 
     @ManyToOne
-    @JoinColumn(name = "admin_id",nullable = false)
-    private Admin admin;
+    @JoinColumn(name = "member_id",nullable = false)
+    private Member member;
 
     @OneToOne
     @JoinColumn(name = "post_id",nullable = false)
