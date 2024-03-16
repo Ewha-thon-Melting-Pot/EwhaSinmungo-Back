@@ -20,11 +20,15 @@ public class PostConverter {
     private final MemberService memberService;
     public Post toPostEntity (PostRequestDTO.PostSaveDto request) {
         Member member = memberService.getCurrentMember();
-
+        LocalDateTime currentDate = LocalDateTime.now();
+        LocalDateTime deadline = currentDate.plus(30, ChronoUnit.DAYS);
         Post post = Post.builder()
+                .email(request.getEmail())
                 .title(request.getTitle())
                 .content(request.getContent())
                 .category(request.getCategory())
+                .createdDate(currentDate)
+                .deadline(deadline)
                 .member(member)
                 .build();
         post.updatePostUrls(request.getUrlList());

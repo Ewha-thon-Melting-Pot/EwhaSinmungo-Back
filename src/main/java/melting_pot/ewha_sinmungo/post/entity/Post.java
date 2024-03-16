@@ -52,13 +52,16 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private String email;
 
+    @Column(nullable = false)
+    private LocalDateTime createdDate;
+
     @ManyToOne
     @JoinColumn(name = "memberId",nullable = false)
     private Member member;
 
-    @ManyToOne
-    @JoinColumn(name = "noticeId",nullable = false)
-    private Notice notice;
+//    @ManyToOne
+//    @JoinColumn(name = "noticeId",nullable = false)
+//    private Notice notice;
 
     @OneToMany (mappedBy = "post", cascade = CascadeType.ALL)
     private List<PostUrl> postUrlList = new ArrayList<>();

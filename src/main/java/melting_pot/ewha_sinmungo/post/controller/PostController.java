@@ -15,12 +15,12 @@ public class PostController {
     private final PostService postService;
 
     @PostMapping("/article")
-    public ApiResponse<PostResponseDTO.PostEntityDto> postPost (@RequestBody @Valid PostRequestDTO.PostSaveDto request) {
-        PostResponseDTO.PostEntityDto postDTO = postService.createPost(request);
-        return ApiResponse.onSuccess(postDTO);
+    public String postPost (@RequestBody @Valid PostRequestDTO.PostSaveDto request) {
+        postService.createPost(request);
+        return "Success";
     }
 
-    @GetMapping("/article")
+    @GetMapping("/article/{postId}")
     public ApiResponse<PostResponseDTO.PostEntityDto> getPost (@PathVariable Long postId){
         return ApiResponse.onSuccess(postService.getPostInfo(postId));
     }

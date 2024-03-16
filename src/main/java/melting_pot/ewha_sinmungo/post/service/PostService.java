@@ -27,10 +27,9 @@ public class PostService {
     private final PostMemberReactionRepository postMemberReactionRepository;
 
     @Transactional
-    public PostResponseDTO.PostEntityDto createPost(PostRequestDTO.PostSaveDto request){
+    public void createPost(PostRequestDTO.PostSaveDto request){
         Post post = postConverter.toPostEntity(request);
         postRepository.save(post);
-        return postConverter.toPostEntityDto(post);
     }
 
     public PostResponseDTO.PostEntityDto getPostInfo(Long postId) {
