@@ -1,6 +1,6 @@
 package melting_pot.ewha_sinmungo.post.entity;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.NoArgsConstructor;
 import melting_pot.ewha_sinmungo.member.entity.Member;
 import melting_pot.ewha_sinmungo.notice.entity.Notice;
