@@ -37,7 +37,7 @@ public class MemberController {
     }
 
     @PostMapping("/test")
-    public String test() {
-        return SecurityUtil.getCurrentUserStudentNum();
+    public Member test() {
+        return memberService.getCurrentMember();
     }
 }

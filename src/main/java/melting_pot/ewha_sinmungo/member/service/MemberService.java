@@ -2,6 +2,7 @@ package melting_pot.ewha_sinmungo.member.service;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import melting_pot.ewha_sinmungo.global.config.SecurityUtil;
 import melting_pot.ewha_sinmungo.global.jwt.JwtToken;
 import melting_pot.ewha_sinmungo.global.jwt.JwtTokenProvider;
 import melting_pot.ewha_sinmungo.member.dto.SignupRequestDto;
@@ -16,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -63,6 +65,12 @@ public class MemberService{
         memberRepository.save(member);
 
         return member;
+    }
+
+    public Member getCurrentMember(){
+        String studentNum = SecurityUtil.getCurrentUserStudentNum();
+        Optional<Member> member = memberRepository.findByStudentNum(studentNum);
+        return member.orElseThrow(() -> new IllegalArgumentException("인증된 사용자 정보가 없습니다."));
     }
 
 }
