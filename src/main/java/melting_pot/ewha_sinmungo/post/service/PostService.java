@@ -10,9 +10,13 @@ import melting_pot.ewha_sinmungo.post.domain.PostMemberReaction;
 import melting_pot.ewha_sinmungo.post.domain.PostMemberReactionId;
 import melting_pot.ewha_sinmungo.post.dto.requestDto.PostRequestDTO;
 import melting_pot.ewha_sinmungo.post.dto.responseDto.PostResponseDTO;
+import melting_pot.ewha_sinmungo.post.entity.Category;
 import melting_pot.ewha_sinmungo.post.entity.Post;
+import melting_pot.ewha_sinmungo.post.entity.Status;
 import melting_pot.ewha_sinmungo.post.repository.PostMemberReactionRepository;
 import melting_pot.ewha_sinmungo.post.repository.PostRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,8 +41,36 @@ public class PostService {
         return postConverter.toPostEntityDto(post);
     }
 
+    public Page<PostResponseDTO.PostPreviewDto> getPostPreviewByCategoryNewest(Category category, Status status, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByCategoryAndStatusOrderByCreatedDateDesc(category, status, pageable);
+        return postConverter.toPreviewListDto(posts);
+    }
+
+    public Page<PostResponseDTO.PostPreviewDto> getPostPreviewByCategoryOldest(Category category, Status status, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByCategoryAndStatusOrderByCreatedDateAsc(category, status, pageable);
+        return postConverter.toPreviewListDto(posts);
+    }
+
+    public Page<PostResponseDTO.PostPreviewDto> getPostPreviewByCategoryHot(Category category, Status status, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByCategoryAndStatusOrderByVoteCountDesc(category, status, pageable);
+        return postConverter.toPreviewListDto(posts);
+    }
+    public Page<PostResponseDTO.PostPreviewDto> getPostPreviewNewest(Status status, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByStatusOrderByCreatedDateDesc(status, pageable);
+        return postConverter.toPreviewListDto(posts);
+    }
+    public Page<PostResponseDTO.PostPreviewDto> getPostPreviewOldest(Status status, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByStatusOrderByCreatedDateAsc(status, pageable);
+        return postConverter.toPreviewListDto(posts);
+    }
+    public Page<PostResponseDTO.PostPreviewDto> getPostPreviewHot(Status status, Pageable pageable) {
+        Page<Post> posts = postRepository.findAllByStatusOrderByVoteCountDesc(status, pageable);
+        return postConverter.toPreviewListDto(posts);
+    }
+
+
     @Transactional
-    public void enableReviewLike(Long postId) {
+    public void enablePostLike(Long postId) {
         Post post = findById(postId);
         Member member = memberService.getCurrentMember();
         PostMemberReaction reaction = getPostMemberReaction(post, member);
@@ -46,8 +78,8 @@ public class PostService {
     }
 
     @Transactional
-    public void disableReviewLike(Long reviewId) {
-        Post post = findById(reviewId);
+    public void disablePostLike(Long postId) {
+        Post post = findById(postId);
         Member member = memberService.getCurrentMember();
         PostMemberReaction reaction = getPostMemberReaction(post, member);
         reaction.disableLike();
@@ -69,6 +101,7 @@ public class PostService {
     }
 
     public Post findById(Long postId) {
-        return postRepository.findById(postId).orElseThrow(()->new GeneralException(ErrorStatus.ARTICLE_NOT_FOUND));
+        Post post = postRepository.findById(postId).orElseThrow(()->new GeneralException(ErrorStatus.ARTICLE_NOT_FOUND));
+        return post;
     }
 }

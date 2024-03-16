@@ -7,6 +7,7 @@ import melting_pot.ewha_sinmungo.post.dto.requestDto.PostRequestDTO;
 import melting_pot.ewha_sinmungo.post.dto.responseDto.PostResponseDTO;
 import melting_pot.ewha_sinmungo.post.entity.Post;
 import melting_pot.ewha_sinmungo.post.entity.PostUrl;
+import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -56,5 +57,22 @@ public class PostConverter {
                 .status(post.getStatus())
                 .createdDate(post.getCreatedDate())
                 .build();
+    }
+
+    public Page<PostResponseDTO.PostPreviewDto> toPreviewListDto(Page<Post> posts) {
+        return posts.map(post -> {
+            LocalDateTime fromDate = LocalDateTime.now();
+            LocalDateTime deadline = post.getDeadline();
+            long dDay = ChronoUnit.DAYS.between(fromDate, deadline);
+            return PostResponseDTO.PostPreviewDto.builder()
+                    .postId(post.getPostId())
+                    .title(post.getTitle())
+                    .category(post.getCategory())
+                    .deadline(deadline)
+                    .dDay(dDay)
+                    .createdDate(post.getCreatedDate())
+                    .voteCount(post.getVoteCount())
+                    .build();
+        });
     }
 }

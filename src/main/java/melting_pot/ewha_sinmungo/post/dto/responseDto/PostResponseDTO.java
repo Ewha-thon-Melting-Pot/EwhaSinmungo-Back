@@ -31,4 +31,18 @@ public class PostResponseDTO {
         LocalDateTime createdDate;
     }
 
+    @Builder
+    @Getter
+    @NoArgsConstructor
+    @AllArgsConstructor
+    public static class PostPreviewDto {
+        Long postId;
+        String title;
+        Category category;
+        LocalDateTime deadline;
+        LocalDateTime createdDate;
+        int voteCount;
+        long dDay;
+    }
+
 }
