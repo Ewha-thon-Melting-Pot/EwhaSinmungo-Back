@@ -3,7 +3,16 @@
 # **🌸 BaeullimFlower : 배울림꽃  🌸**
 
 ## ***🍯 MeltingPot Team - BackEnd 🍯***   
-   
+
+📜 API 명세서
+--------------------------
+https://www.notion.so/API-9042d97ee2104605b651d191461471cc   
+![5E9ED529-5995-409C-A5BD-A4751614BD2E](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/b0190002-4898-4c32-8915-f02fb7351716)
+
+☁ ERD
+--------------------------
+![21E168FA-BE38-42A0-B38D-BB1C28A5E048](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/caa67203-5c3d-4999-9158-45c72bad22e1)
+
 
 📍 Commit Convention
 --------------------------
@@ -33,14 +42,7 @@
 ## 아키텍처 구조
 ![07BE84BE-41B9-4B9A-BD9C-0498545CF5B3](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/3fe7c5f2-c418-4730-9751-de1558168ff8)
 
-☁ ERD
---------------------------
-![21E168FA-BE38-42A0-B38D-BB1C28A5E048](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/caa67203-5c3d-4999-9158-45c72bad22e1)
 
-
-📜 API 명세서
---------------------------
-https://www.notion.so/API-9042d97ee2104605b651d191461471cc
 
 📁 프로젝트 폴더 구조
 --------------------------
