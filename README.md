@@ -2,7 +2,7 @@
 
 # **🌸 BaeullimFlower : 배울림꽃  🌸**
 
-***🍯 MeltingPot Team - BackEnd 🍯***   
+## ***🍯 MeltingPot Team - BackEnd 🍯***   
    
 
 📍 Commit Convention
@@ -29,3 +29,106 @@
 |CI/CD 툴|Github Actions|
 |ERD 다이어그램 툴|ERD Cloud|
 |Java version|Java 17|
+
+## 아키텍처 구조
+![07BE84BE-41B9-4B9A-BD9C-0498545CF5B3](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/3fe7c5f2-c418-4730-9751-de1558168ff8)
+
+☁ ERD
+--------------------------
+![21E168FA-BE38-42A0-B38D-BB1C28A5E048](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/caa67203-5c3d-4999-9158-45c72bad22e1)
+
+
+📜 API 명세서
+--------------------------
+https://www.notion.so/API-9042d97ee2104605b651d191461471cc
+
+📁 프로젝트 폴더 구조
+--------------------------
+```
+├── main
+│   ├── java
+│   │   └── melting_pot
+│   │       └── ewha_sinmungo
+│   │           ├── EwhaSinmungoApplication.java
+│   │           ├── global
+│   │           │   ├── BaseTimeEntity.java
+│   │           │   ├── apiResponse
+│   │           │   │   ├── ApiResponse.java
+│   │           │   │   ├── Message.java
+│   │           │   │   ├── code
+│   │           │   │   │   ├── BaseCode.java
+│   │           │   │   │   ├── BaseErrorCode.java
+│   │           │   │   │   ├── ErrorReasonDTO.java
+│   │           │   │   │   ├── ReasonDTO.java
+│   │           │   │   │   └── status
+│   │           │   │   │       ├── ErrorStatus.java
+│   │           │   │   │       └── SuccessStatus.java
+│   │           │   │   └── exception
+│   │           │   │       ├── GeneralException.java
+│   │           │   │       └── handler
+│   │           │   │           └── ErrorHandler.java
+│   │           │   ├── config
+│   │           │   │   ├── CorsConfig.java
+│   │           │   │   ├── SecurityConfig.java
+│   │           │   │   └── SecurityUtil.java
+│   │           │   └── jwt
+│   │           │       ├── JwtAuthenticationFilter.java
+│   │           │       ├── JwtToken.java
+│   │           │       └── JwtTokenProvider.java
+│   │           ├── member
+│   │           │   ├── controller
+│   │           │   │   └── MemberController.java
+│   │           │   ├── dto
+│   │           │   │   ├── LoginRequestDto.java
+│   │           │   │   ├── LoginResponseDto.java
+│   │           │   │   ├── SignUpResponseDto.java
+│   │           │   │   └── SignupRequestDto.java
+│   │           │   ├── entity
+│   │           │   │   └── Member.java
+│   │           │   ├── repository
+│   │           │   │   └── MemberRepository.java
+│   │           │   └── service
+│   │           │       ├── CustomUserDetailsService.java
+│   │           │       └── MemberService.java
+│   │           ├── notice
+│   │           │   └── entity
+│   │           │       └── Notice.java
+│   │           ├── post
+│   │           │   ├── controller
+│   │           │   │   └── PostController.java
+│   │           │   ├── converter
+│   │           │   │   └── PostConverter.java
+│   │           │   ├── dto
+│   │           │   │   ├── requestDto
+│   │           │   │   │   └── PostRequestDTO.java
+│   │           │   │   └── responseDto
+│   │           │   │       └── PostResponseDTO.java
+│   │           │   ├── entity
+│   │           │   │   ├── Category.java
+│   │           │   │   ├── Post.java
+│   │           │   │   ├── PostUrl.java
+│   │           │   │   └── Status.java
+│   │           │   ├── repository
+│   │           │   │   └── PostRepository.java
+│   │           │   └── service
+│   │           │       └── PostService.java
+│   │           ├── result
+│   │           │   └── entity
+│   │           │       └── Result.java
+│   │           └── vote
+│   │               ├── controller
+│   │               │   └── VoteController
+│   │               ├── entity
+│   │               │   └── Vote.java
+│   │               ├── reporitory
+│   │               │   └── VoteRepository.java
+│   │               └── service
+│   │                   └── VoteService.java
+│   └── resources
+│       └── application.yml
+└── test
+    └── java
+        └── melting_pot
+            └── ewha_sinmungo
+                └── EwhaSinmungoApplicationTests.java
+```
