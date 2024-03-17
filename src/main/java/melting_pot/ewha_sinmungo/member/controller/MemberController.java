@@ -2,7 +2,6 @@ package melting_pot.ewha_sinmungo.member.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import melting_pot.ewha_sinmungo.global.config.SecurityUtil;
 import melting_pot.ewha_sinmungo.global.jwt.JwtToken;
 import melting_pot.ewha_sinmungo.member.dto.LoginRequestDto;
 import melting_pot.ewha_sinmungo.member.dto.LoginResponseDto;
@@ -39,5 +38,10 @@ public class MemberController {
     @PostMapping("/test")
     public Member test() {
         return memberService.getCurrentMember();
+    }
+
+    @GetMapping("/test2")
+    public String test2(){
+        return "테스트 확인";
     }
 }
