@@ -57,10 +57,12 @@ public class VoteService {
         return voteRepository.existsByMemberAndPost(member,post);
     }
 
+    //투표수 증가
     private void increaseVoteCount(Post post){
         post.setVoteCount(post.getVoteCount()+1);
     }
 
+    //투표수 감소
     private void decreaseVoteCount(Post post){
         post.setVoteCount(post.getVoteCount()-1);
     }

@@ -13,12 +13,14 @@ public class ResultController {
 
     private final ResultService resultService;
 
+    //논의결과 작성
     @PostMapping("/admin/{postId}/result")
     public String postResult (@RequestBody @Valid ResultRequestDto.ResultSaveDto request, @PathVariable Long postId) {
         resultService.createResult(request, postId);
         return "Success";
     }
 
+    //논의결과 수정
     @PutMapping("/admin/{postId}/result")
     public String updateResult (@RequestBody @Valid ResultRequestDto.ResultSaveDto request, @PathVariable Long postId) {
         resultService.updateResult(request, postId);

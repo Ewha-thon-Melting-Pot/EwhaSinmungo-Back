@@ -27,43 +27,54 @@ public class Post extends BaseTimeEntity {
     @Column(name = "postId")
     private Long postId;
 
+    //제목
     @Column(nullable = false)
     private String title;
 
+    //내용
     @Column(nullable = false)
     private String content;
 
+    //목록
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private Category category;
 
+    //투표수
     @Setter
     @Builder.Default
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int voteCount = 0;
 
+    //마감기한
     @Column(nullable = false)
     private LocalDateTime deadline;
 
+    //진행상황
     @Builder.Default
     @Enumerated(value = EnumType.STRING)
     @Column(nullable = false)
     private Status status = Status.ONGOING;
 
+    //이메일
     @Column(nullable = false)
     private String email;
 
+    //생성날짜
     @Column(nullable = false)
     private LocalDateTime createdDate;
 
+    //인기게시물인지
     @Builder.Default
     @Column(nullable = false)
     private Boolean isHot = false;
 
+    //작성자
     @ManyToOne
     @JoinColumn(name = "memberId",nullable = false)
     private Member member;
 
+    //첨부파일
     @OneToMany (mappedBy = "post", cascade = CascadeType.ALL)
     private List<PostUrl> postUrlList = new ArrayList<>();
 

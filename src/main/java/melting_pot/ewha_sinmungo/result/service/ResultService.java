@@ -17,6 +17,7 @@ public class ResultService {
     private final ResultConverter resultConverter;
     private final ResultRepository resultRepository;
 
+    //논의결과 작성
     @Transactional
     public Result createResult(ResultRequestDto.ResultSaveDto request, Long postId) {
         Result result = resultConverter.toResultEntity(request, postId);
@@ -24,6 +25,7 @@ public class ResultService {
         return result;
     }
 
+    //논의결과 수정
     @Transactional
     public Result updateResult(ResultRequestDto.ResultSaveDto request, Long postId) {
         Result result = findById(postId);
