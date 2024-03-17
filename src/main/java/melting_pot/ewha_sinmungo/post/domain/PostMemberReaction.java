@@ -4,9 +4,8 @@ import lombok.*;
 import melting_pot.ewha_sinmungo.member.entity.Member;
 import melting_pot.ewha_sinmungo.post.entity.Post;
 
+
 import javax.persistence.*;
-import javax.persistence.IdClass;
-import javax.persistence.ManyToOne;
 
 @Entity
 @Builder
@@ -15,6 +14,7 @@ import javax.persistence.ManyToOne;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor
 public class PostMemberReaction {
+
     @Id
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "postId")

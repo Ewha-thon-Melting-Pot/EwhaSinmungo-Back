@@ -55,6 +55,10 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private LocalDateTime createdDate;
 
+    @Builder.Default
+    @Column(nullable = false)
+    private Boolean isHot = false;
+
     @ManyToOne
     @JoinColumn(name = "memberId",nullable = false)
     private Member member;
@@ -67,8 +71,15 @@ public class Post extends BaseTimeEntity {
     private List<PostUrl> postUrlList = new ArrayList<>();
 
 
-    public void increaseVoteCount() {this.voteCount += 1;}
-    public void decreaseVoteCount() {this.voteCount -= 1;}
+    public void increaseVoteCount() {
+        this.voteCount += 1;
+        if(voteCount >= 90){
+            isHot = Boolean.TRUE;
+        }
+    }
+    public void decreaseVoteCount() {
+        this.voteCount -= 1;
+    }
 
     public void updatePostUrls(List<String> postUrls){
         Set<String> uniqueUrls = new HashSet<>(postUrls);

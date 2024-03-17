@@ -20,7 +20,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+
+import static melting_pot.ewha_sinmungo.global.apiResponse.code.status.ErrorStatus.ARTICLE_NOT_FOUND;
 
 @Service
 @RequiredArgsConstructor
@@ -68,7 +71,10 @@ public class PostService {
         return postConverter.toPreviewListDto(posts);
     }
 
-
+    public Page<PostResponseDTO.PostPreviewDto> getHotPostPreview(Pageable pageable) {
+        Page<Post> hotPosts = postRepository.findByIsHotTrueOrderByCreatedDateDesc(pageable);
+        return postConverter.toPreviewListDto(hotPosts);
+    }
     @Transactional
     public void enablePostLike(Long postId) {
         Post post = findById(postId);
@@ -86,7 +92,6 @@ public class PostService {
     }
 
     private PostMemberReaction getPostMemberReaction(Post post, Member member) {
-
         PostMemberReactionId reactionId = new PostMemberReactionId(post, member);
         Optional<PostMemberReaction> reactionOptional = postMemberReactionRepository.findById(reactionId);
         if (reactionOptional.isPresent()) {
@@ -100,8 +105,9 @@ public class PostService {
         }
     }
 
+
     public Post findById(Long postId) {
-        Post post = postRepository.findById(postId).orElseThrow(()->new GeneralException(ErrorStatus.ARTICLE_NOT_FOUND));
-        return post;
+        return postRepository.findById(postId)
+                .orElseThrow(()-> new GeneralException(ARTICLE_NOT_FOUND));
     }
 }
