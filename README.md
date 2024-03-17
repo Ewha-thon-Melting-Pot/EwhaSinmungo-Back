@@ -7,8 +7,8 @@
 
 📍 Commit Convention
 --------------------------
-TAG : 메시지
-태그 이름|설명|
+### TAG : 메시지
+|태그 이름|설명|
 |---|---|
 |feat|새로운 기능 추가|
 |fix|버그, 오류 수정|
@@ -18,3 +18,14 @@ TAG : 메시지
 |refactor|코드 리팩토링|
 
 ⚙ 기술 아키텍처
+--------------------------
+### 사용 스택
+|통합 개발 환경|IntelliJ|
+|---|---|
+|Spring 버전|2.7.11|
+|데이터베이스|MySQL|
+|배포|AWS EC2(Ubuntu),S3, CodeDeploy|
+|Project 빌드 관리 도구|Gradle|
+|CI/CD 툴|Github Actions|
+|ERD 다이어그램 툴|ERD Cloud|
+|Java version|Java 17|
