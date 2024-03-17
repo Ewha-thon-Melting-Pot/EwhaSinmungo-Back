@@ -24,7 +24,10 @@ public enum ErrorStatus implements BaseErrorCode {
     INVALID_REFRESH_TOKEN(HttpStatus.BAD_REQUEST, "MEMBER4005", "유효하지 않은 리프레시 토큰 입니다."),
     // 게시물 관련 에러
     ARTICLE_NOT_FOUND(HttpStatus.NOT_FOUND, "ARTICLE4001", "게시글이 없습니다."),
-    PAGE_FORMAT_BAD_REQUEST(HttpStatus.BAD_REQUEST,"PAGE4001","잘못된 페이지 번호 형식입니다");
+    PAGE_FORMAT_BAD_REQUEST(HttpStatus.BAD_REQUEST,"PAGE4001","잘못된 페이지 번호 형식입니다"),
+    // 결과 관련 에러
+    RESULT_NOT_FOUND(HttpStatus.NOT_FOUND, "RESULT4001","결과가 없습니다");
+
 
     private final HttpStatus httpStatus;
     private final String code;
