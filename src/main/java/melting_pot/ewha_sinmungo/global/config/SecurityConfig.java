@@ -21,18 +21,16 @@ public class SecurityConfig{
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         return httpSecurity
-                // REST API이므로 basic auth 및 csrf 보안을 사용하지 않음
                 .httpBasic().disable()
                 .csrf().disable()
-                // JWT를 사용하기 때문에 세션을 사용하지 않음
                 .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 .and()
                 .authorizeHttpRequests()
-                // 해당 API에 대해서는 모든 요청을 허가
+                // 로그인, 회원가입에 대해서는 모든 요청을 허가
                 .antMatchers("/auth/login", "/auth/signup").permitAll()
-                // USER 권한이 있어야 요청할 수 있음
+                // admin과 관련해서는 ADMIN 권한이 있어야 요청할 수 있음
                 .antMatchers("/admin/**").hasRole("ADMIN")
-                // 이 밖에 모든 요청에 대해서 인증을 필요로 한다는 설정
+                // 이 밖에 모든 요청에 대해서 인증을 필요
                 .anyRequest().authenticated()
                 .and()
                 // JWT 인증을 위하여 직접 구현한 필터를 UsernamePasswordAuthenticationFilter 전에 실행
