@@ -2,7 +2,7 @@
 
 # **🌸 BaeullimFlower : 배울림꽃  🌸**
 
-## ***🍯 MeltingPot Team - BackEnd 🍯***   
+***🍯 MeltingPot Team - BackEnd 🍯***   
 
 📜 API 명세서
 --------------------------
