@@ -54,19 +54,19 @@ public class PostService {
         return postConverter.toPreviewListDto(posts);
     }
 
-    //게시글 분야별 목록 조회(최신순)
+    //게시글 진행상황별 목록 조회(최신순)
     public Page<PostResponseDTO.PostPreviewDto> getPostPreviewNewest(Status status, Pageable pageable) {
         Page<Post> posts = postRepository.findAllByStatusOrderByCreatedDateDesc(status, pageable);
         return postConverter.toPreviewListDto(posts);
     }
 
-    //게시글 분야별 목록 조회(오래된순)
+    //게시글 진행상황별 목록 조회(오래된순)
     public Page<PostResponseDTO.PostPreviewDto> getPostPreviewOldest(Status status, Pageable pageable) {
         Page<Post> posts = postRepository.findAllByStatusOrderByCreatedDateAsc(status, pageable);
         return postConverter.toPreviewListDto(posts);
     }
 
-    //게시글 분야별 목록 조회(인기순)
+    //게시글 진행상황별 목록 조회(인기순)
     public Page<PostResponseDTO.PostPreviewDto> getPostPreviewHot(Status status, Pageable pageable) {
         Page<Post> posts = postRepository.findAllByStatusOrderByVoteCountDesc(status, pageable);
         return postConverter.toPreviewListDto(posts);
