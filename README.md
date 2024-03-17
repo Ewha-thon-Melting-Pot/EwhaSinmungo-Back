@@ -44,6 +44,7 @@ https://www.notion.so/API-9042d97ee2104605b651d191461471cc
 
 📁 프로젝트 폴더 구조
 --------------------------
+```
 ├── main
 │   ├── java
 │   │   └── melting_pot
@@ -130,3 +131,4 @@ https://www.notion.so/API-9042d97ee2104605b651d191461471cc
         └── melting_pot
             └── ewha_sinmungo
                 └── EwhaSinmungoApplicationTests.java
+```
