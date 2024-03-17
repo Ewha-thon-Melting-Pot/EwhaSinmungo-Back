@@ -41,6 +41,17 @@ public class VoteService {
         increaseVoteCount(post);
     }
 
+    //투표 삭제
+    public void deleteVote(Long postId){
+        Post post = postService.findById(postId);
+        Member member = memberService.getCurrentMember();
+
+        Vote vote = voteRepository.findByMemberAndPost(member, post)
+                .orElseThrow(()->new RuntimeException("투표가 존재하지 않습니다."));
+        voteRepository.delete(vote);
+        decreaseVoteCount(post);
+    }
+
     @Transactional(readOnly = true)
     public boolean isExistsByMemberAndPost(Member member, Post post){
         return voteRepository.existsByMemberAndPost(member,post);
@@ -48,5 +59,9 @@ public class VoteService {
 
     private void increaseVoteCount(Post post){
         post.setVoteCount(post.getVoteCount()+1);
+    }
+
+    private void decreaseVoteCount(Post post){
+        post.setVoteCount(post.getVoteCount()-1);
     }
 }

@@ -63,12 +63,20 @@ public class PostController {
         return ApiResponse.onSuccess(previews);
     }
 
-    //좋아요 생성
+    //투표 생성
     @PostMapping("/article/{postId}/vote")
     @ResponseStatus(value = HttpStatus.OK)
     public String createVote(@PathVariable final Long postId){
         voteService.createVote(postId);
-        return "좋아요를 눌렀습니다.";
+        return "투표했습니다.";
+    }
+
+    //투표 삭제
+    @DeleteMapping("/article/{postId}/vote")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteVote(@PathVariable final Long postId){
+        voteService.deleteVote(postId);
+        return "투표를 취소했습니다.";
     }
 
 }
