@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 public class MemberController {
     private final MemberService memberService;
 
+    //로그인
     @PostMapping("/login")
     public LoginResponseDto logIn(@RequestBody LoginRequestDto requestDto) {
         String studentNum = requestDto.getStudentNum();
@@ -28,20 +29,11 @@ public class MemberController {
         return new LoginResponseDto(jwtToken.getAccessToken(), jwtToken.getRefreshToken());
     }
 
+    //회원가입
     @PostMapping("/signup")
     public SignUpResponseDto signUp(@RequestBody SignupRequestDto requestDto){
         Member member = memberService.signUp(requestDto);
 
         return new SignUpResponseDto(member.getName(), member.getStudentNum(), member.getCollege(), member.getRoles());
-    }
-
-    @PostMapping("/test")
-    public Member test() {
-        return memberService.getCurrentMember();
-    }
-
-    @GetMapping("/test2")
-    public String test2(){
-        return "테스트 확인";
     }
 }

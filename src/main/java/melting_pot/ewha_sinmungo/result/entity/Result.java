@@ -22,16 +22,20 @@ public class Result {
     @Column(name = "resultId")
     private Long id;
 
+    //내용
     @Column(nullable = false)
     private String content;
 
+    //생성날짜
     @Column(nullable = false)
     private LocalDateTime createdDate;
 
+    //관리자
     @ManyToOne
     @JoinColumn(name = "memberId",nullable = false)
     private Member member;
 
+    //게시글
     @OneToOne
     @JoinColumn(name = "postId",nullable = false)
     private Post post;

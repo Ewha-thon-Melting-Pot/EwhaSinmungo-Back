@@ -23,18 +23,23 @@ public class Member implements UserDetails {
     @Column(name = "member_id")
     private Long id;
 
+    //이름
     @Column(nullable = false)
     private String name;
 
+    //학번
     @Column(nullable = false)
     private String studentNum;
 
+    //비밀번호
     @Column(nullable = false)
     private String password;
 
+    //대학
     @Column(nullable = false)
     private String college;
 
+    //접근권한
     @ElementCollection(fetch = FetchType.EAGER)
     @Builder.Default
     private List<String> roles = new ArrayList<>();

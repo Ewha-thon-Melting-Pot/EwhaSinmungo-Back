@@ -21,42 +21,55 @@ public class PostController {
     private final PostService postService;
     private final VoteService voteService;
 
+    //게시글 작성
     @PostMapping("/article")
     public String postPost (@RequestBody @Valid PostRequestDTO.PostSaveDto request) {
         postService.createPost(request);
         return "Success";
     }
 
+    //게시글 상세 조회
     @GetMapping("/article/{postId}")
     public ApiResponse<PostResponseDTO.PostEntityDto> getPost (@PathVariable Long postId){
         return ApiResponse.onSuccess(postService.getPostInfo(postId));
     }
 
+    //게시글 분야+진행상황별 목록 조회(최신순)
     @GetMapping("/article/previews/{category}/{status}/newest")
     public ApiResponse<Page<PostResponseDTO.PostPreviewDto>> getPostPreviewByCategoryNewest(@PathVariable Category category, @PathVariable Status status, Pageable pageable) {
         Page<PostResponseDTO.PostPreviewDto> previews = postService.getPostPreviewByCategoryNewest(category, status, pageable);
         return ApiResponse.onSuccess(previews);
     }
+
+    //게시글 분야+진행상황별 목록 조회(오래된순)
     @GetMapping("/article/previews/{category}/{status}/oldest")
     public ApiResponse<Page<PostResponseDTO.PostPreviewDto>> getPostPreviewByCategoryOldest(@PathVariable Category category, @PathVariable Status status, Pageable pageable) {
         Page<PostResponseDTO.PostPreviewDto> previews = postService.getPostPreviewByCategoryOldest(category, status, pageable);
         return ApiResponse.onSuccess(previews);
     }
+
+    //게시글 분야+진행상황별 목록 조회(인기순)
     @GetMapping("/article/previews/{category}/{status}/hot")
     public ApiResponse<Page<PostResponseDTO.PostPreviewDto>> getPostPreviewByCategoryHot(@PathVariable Category category, @PathVariable Status status, Pageable pageable) {
         Page<PostResponseDTO.PostPreviewDto> previews = postService.getPostPreviewByCategoryNewest(category, status, pageable);
         return ApiResponse.onSuccess(previews);
     }
+
+    //게시글 분야별 목록 조회(최신순)
     @GetMapping("/article/previews/{category}/newest")
     public ApiResponse<Page<PostResponseDTO.PostPreviewDto>> getPostPreviewNewest(@PathVariable Status status, Pageable pageable) {
         Page<PostResponseDTO.PostPreviewDto> previews = postService.getPostPreviewNewest(status, pageable);
         return ApiResponse.onSuccess(previews);
     }
+
+    //게시글 분야별 목록 조회(오래된순)
     @GetMapping("/article/previews/{category}/oldest")
     public ApiResponse<Page<PostResponseDTO.PostPreviewDto>> getPostPreviewOldest( @PathVariable Status status, Pageable pageable) {
         Page<PostResponseDTO.PostPreviewDto> previews = postService.getPostPreviewOldest(status, pageable);
         return ApiResponse.onSuccess(previews);
     }
+
+    //게시글 분야별 목록 조회(인기순)
     @GetMapping("/article/previews/{category}/hot")
     public ApiResponse<Page<PostResponseDTO.PostPreviewDto>> getPostPreviewHot(@PathVariable Status status, Pageable pageable) {
         Page<PostResponseDTO.PostPreviewDto> previews = postService.getPostPreviewHot(status, pageable);

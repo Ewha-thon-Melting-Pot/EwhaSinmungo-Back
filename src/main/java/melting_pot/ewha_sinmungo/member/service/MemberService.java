@@ -29,6 +29,7 @@ public class MemberService{
     private final JwtTokenProvider jwtTokenProvider;
     private final PasswordEncoder passwordEncoder;
 
+    //로그인
     @Transactional
     public JwtToken logIn(String studentNum, String password) {
         // 1. username + password 를 기반으로 Authentication 객체 생성
@@ -45,6 +46,7 @@ public class MemberService{
         return jwtToken;
     }
 
+    //회원가입
     @Transactional
     public Member signUp(SignupRequestDto requestDto){
         if(memberRepository.existsByStudentNum(requestDto.getStudentNum())){
@@ -67,6 +69,7 @@ public class MemberService{
         return member;
     }
 
+    //현재 로그인한 멤버 가져오기
     public Member getCurrentMember(){
         String studentNum = SecurityUtil.getCurrentUserStudentNum();
         Optional<Member> member = memberRepository.findByStudentNum(studentNum);

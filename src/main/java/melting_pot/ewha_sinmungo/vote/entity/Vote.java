@@ -16,10 +16,12 @@ public class Vote {
     @Column(name = "vote_id")
     private Long id;
 
+    //투표한 사용자
     @ManyToOne
     @JoinColumn(name = "member_id",nullable = false)
     private Member member;
 
+    //투표한 게시글
     @ManyToOne
     @JoinColumn(name = "post_id",nullable = false)
     private Post post;
