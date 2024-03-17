@@ -43,9 +43,12 @@ dependencies {
 	annotationProcessor 'org.projectlombok:lombok'
 
 	//JWT
-	implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
-	implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
-	implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	// implementation 'io.jsonwebtoken:jjwt-api:0.11.5'
+	// implementation 'io.jsonwebtoken:jjwt-impl:0.11.5'
+	// implementation 'io.jsonwebtoken:jjwt-jackson:0.11.5'
+	implementation group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+	runtimeOnly group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 
 	//javax
 	implementation 'javax.xml.bind:jaxb-api:2.3.1'
