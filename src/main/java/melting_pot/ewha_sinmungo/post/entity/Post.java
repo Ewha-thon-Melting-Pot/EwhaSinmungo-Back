@@ -37,6 +37,7 @@ public class Post extends BaseTimeEntity {
     @Column(nullable = false)
     private Category category;
 
+    @Setter
     @Builder.Default
     @Column(nullable = false, columnDefinition = "integer default 0")
     private int voteCount = 0;
@@ -62,10 +63,6 @@ public class Post extends BaseTimeEntity {
     @ManyToOne
     @JoinColumn(name = "memberId",nullable = false)
     private Member member;
-
-//    @ManyToOne
-//    @JoinColumn(name = "noticeId",nullable = false)
-//    private Notice notice;
 
     @OneToMany (mappedBy = "post", cascade = CascadeType.ALL)
     private List<PostUrl> postUrlList = new ArrayList<>();

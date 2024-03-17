@@ -7,8 +7,10 @@ import melting_pot.ewha_sinmungo.post.dto.responseDto.PostResponseDTO;
 import melting_pot.ewha_sinmungo.post.entity.Category;
 import melting_pot.ewha_sinmungo.post.entity.Status;
 import melting_pot.ewha_sinmungo.post.service.PostService;
+import melting_pot.ewha_sinmungo.vote.service.VoteService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -17,6 +19,7 @@ import javax.validation.Valid;
 @RequiredArgsConstructor
 public class PostController {
     private final PostService postService;
+    private final VoteService voteService;
 
     @PostMapping("/article")
     public String postPost (@RequestBody @Valid PostRequestDTO.PostSaveDto request) {
@@ -60,16 +63,20 @@ public class PostController {
         return ApiResponse.onSuccess(previews);
     }
 
-    @PutMapping("/article/{postId}/vote/enable")
-    public ApiResponse<Boolean> enablePostLike(@PathVariable Long postId){
-        postService.enablePostLike(postId);
-        return ApiResponse.onSuccess(Boolean.TRUE);
+    //투표 생성
+    @PostMapping("/article/{postId}/vote")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String createVote(@PathVariable final Long postId){
+        voteService.createVote(postId);
+        return "투표했습니다.";
     }
 
-    @PutMapping("/article/{postId}/vote/disable")
-    public ApiResponse<Boolean> disablePostLike(@PathVariable Long postId){
-        postService.disablePostLike(postId);
-        return ApiResponse.onSuccess(Boolean.TRUE);
+    //투표 삭제
+    @DeleteMapping("/article/{postId}/vote")
+    @ResponseStatus(value = HttpStatus.OK)
+    public String deleteVote(@PathVariable final Long postId){
+        voteService.deleteVote(postId);
+        return "투표를 취소했습니다.";
     }
 
 }
