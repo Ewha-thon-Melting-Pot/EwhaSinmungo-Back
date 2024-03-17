@@ -7,7 +7,8 @@
 📜 API 명세서
 --------------------------
 https://www.notion.so/API-9042d97ee2104605b651d191461471cc   
-![5E9ED529-5995-409C-A5BD-A4751614BD2E](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/b0190002-4898-4c32-8915-f02fb7351716)
+![5E9ED529-5995-409C-A5BD-A4751614BD2E](https://github.com/Ewha-thon-Melting-Pot/EwhaSinmungo-Back/assets/112189780/4928df13-a105-47c4-bdb7-5a249c4dbbc7)
+
 
 ☁ ERD
 --------------------------
