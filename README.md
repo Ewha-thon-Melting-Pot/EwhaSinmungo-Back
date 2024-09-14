@@ -32,7 +32,7 @@ https://www.notion.so/API-9042d97ee2104605b651d191461471cc
 ### 사용 스택
 |통합 개발 환경|IntelliJ|
 |---|---|
-|Spring 버전|2.7.11|
+|Spring Boot 버전|2.7.11|
 |데이터베이스|MySQL|
 |배포|AWS EC2(Ubuntu),S3, CodeDeploy|
 |Project 빌드 관리 도구|Gradle|
